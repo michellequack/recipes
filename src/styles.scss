@@ -1,0 +1,141 @@
+/* You can add global styles to this file, and also import other style files */
+.accordion-button.collapsed {
+    background-color: #144a6c !important;
+    color: white !important;
+}
+
+.accordion-button.collapsed::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button:not(.collapsed) {
+    color: white !important;
+    background-color: #010e1b !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+}
+
+.accordion-body {
+    background-color: #e1e5e8 !important;
+}
+
+@media (min-width: 650px) {
+    .modal-content {
+        display: block !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+@media (max-width: 650px) {
+    .modal-content {
+        display: block !important;
+        padding: 5px !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .modal-dialog {
+        max-width: 500px;
+        margin-top: 5px !important;
+        margin-bottom: 5px !important;
+    }
+}
+
+button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    outline: none !important;
+}
+
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    outline: none !important;
+}
+
+.list-group-item-modal {
+    position: relative;
+    display: block;
+    padding: 0px;
+    color: #212529;
+    text-decoration: none;
+    background-color: #fff;
+    border: 0px solid rgba(0, 0, 0, 0.125);
+    font-style: italic;
+}
+
+@media (min-width: 500px)
+{
+    .list-group-modal {
+        columns: 2;
+        padding-left: 0;
+        margin-bottom: 0;
+        border-radius: 0.25rem;
+        font-size: 14px;
+    }
+}
+@media (max-width: 499px)
+{
+    .list-group-modal {
+        padding-left: 0;
+        margin-bottom: 0;
+        border-radius: 0.25rem;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 650px)
+{
+    .modal-dialog {
+        max-width: 750px !important;
+    }
+}
+
+.custom-select {
+    display: inline-block;
+    height: calc(2.25rem + 2px);
+    padding: .375rem 1.75rem .375rem .75rem;
+    flex-grow: 1;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center;
+    background-size: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.input-group-append, .input-group-prepend {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.input-group {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+}
+
+.input-group-append {
+    margin-left: -1px;
+}

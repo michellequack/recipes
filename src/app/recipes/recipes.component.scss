@@ -1,0 +1,35 @@
+.li-span {
+    display: inline-block;
+    width: 100%;
+}
+
+.directions {
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+
+.top-line {
+    width: 100%;
+}
+
+@media (min-width: 650px) {
+    .page-title {
+        height: 100px;
+        font-size: 30px;
+        margin-left: 15px;
+        padding-top: 5px;
+    }
+}
+
+@media (max-width: 649px) {
+    .page-title {
+        height: 100px;
+        font-size: 24px;
+        margin-left: 15px;
+        padding-top: 5px;
+    }
+}
+
+.page-title-img {
+    margin-left: 1px;
+}

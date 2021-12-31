@@ -1,0 +1,29 @@
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="detailModalLabel">{{recipe.name}}</h5>
+            <button type="button" 
+            (click)="closeViewClicked()"
+                class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="modal-body">
+            <ul class="list-group-modal list-group-flush">
+                <li class="list-group-item-modal" *ngFor="let ingredient of recipe.ingredients">
+                    {{ingredient}}
+                </li>
+            </ul>
+            <hr />
+            <div class="directions">
+                {{recipe.directions}}
+            </div>
+            <div *ngIf="recipe.numberOfServings" class="servings">
+                Number of servings: {{recipe.numberOfServings}}
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeViewClicked()">Close</button>
+        </div>
+    </div>
+</div>

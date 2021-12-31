@@ -1,0 +1,144 @@
+<div class="container">
+    <h2>Administrative Details</h2>
+    <button type="button" class="btn btn-outline-primary" (click)="openAddModal(addEditModal)">Add New Recipe</button>
+    <br /><br />
+    <div class="input-group mb-3">
+        <select class="custom-select" id="categorySelect" [(ngModel)]="currentCategory" 
+                (change)="filterCategory()">
+            <option value="Choose" selected>Choose...</option>
+          <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+        </select>
+        <div class="input-group-append">
+          <label class="input-group-text" for="categorySelect">Categories</label>
+        </div>
+    </div>
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Recipe Name</th>
+                <th *ngIf="currentCategory">Category</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let recipe of currentRecipes">
+                <td scope="row">{{recipe.name}}</td>
+                <td *ngIf="currentCategory">{{recipe.category}}</td>
+                <td>
+                    <svg (click)="openViewModal(viewModal, recipe._id)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
+                        <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
+                    </svg>
+                    &nbsp;
+                    <svg (click)="openEditModal(addEditModal, recipe._id)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                    </svg> &nbsp;
+                    <svg (click)="deleteRecipe(recipe)" 
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<ng-template #viewModal let-modal> 
+    <app-recipe-view
+    [recipe] = "currentRecipe"
+    (closeView)="closeView()"
+    ></app-recipe-view>
+</ng-template>
+
+<ng-template #addEditModal let-modal> 
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"  *ngIf="mode==='Add'" id="detailModalLabel">Add New Recipe</h5>
+                <h5 class="modal-title"  *ngIf="mode==='Edit'" id="detailModalLabel">Edit Recipe</h5>
+                <button type="button" 
+                (click)="modal.dismiss('Cross click')"
+                    class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <form name="frmAddEdit">
+                    <div class="form-group">
+                        <label for="txtRecipeName">Recipe Name</label>
+                        <input type="text" class="form-control" id="txtRecipeName" 
+                            name="txtRecipeName" 
+                            [(ngModel)]="currentRecipe.name"
+                            placeholder="Please input a name">
+                    </div>
+                    <br/>
+                    <div class="categoryLabel">
+                        <label for="selectCategory">Category</label>
+                    </div>
+                    <div class="input-group mb-3 category-group">
+                        <select class="custom-select" id="selectCategory"
+                            name="selectCategory" 
+                            [(ngModel)]="currentRecipe.category" 
+                            >
+                            <option value="Choose" selected>Choose...</option>
+                          <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+                        </select>
+                        <div class="input-group-append">
+                          <label class="input-group-text" for="categorySelect">Categories</label>
+                        </div>
+                    </div>
+                    
+                    <div class="ingredient-group">
+                        <label>Ingredients</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" 
+                                name="txtIngredient"
+                                id="txtIngredient" [(ngModel)]="addIngredientName"
+                                placeholder="Enter an ingredient" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                            <button class="btn btn-outline-primary" 
+                                (click)="addIngredient()"
+                                type="button">Add</button>
+                            </div>
+                        </div>
+                        <ul class="list-group ingredient-list">
+                            <li *ngFor="let ingredient of currentRecipe.ingredients" 
+                                class="list-group-item ingredient-list-item">
+                                <span class="ingredient-name">{{ingredient}}</span>
+                                <span class="ingredient-trash">
+                                    <svg (click)="deleteIngredient(ingredient)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                  </svg></span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtNumberOfServings">Number of Servings</label>
+                        <input type="text" class="form-control" id="txtNumberOfServings" 
+                            name="txtNumberOfServings" 
+                            [(ngModel)]="currentRecipe.numberOfServings"
+                            placeholder="Please input number of servings">
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="txtAreaDirections">Directions</label>
+                        <textarea
+                            [(ngModel)]="currentRecipe.directions" 
+                            class="form-control" id="txtAreaDirections"
+                            name="txtAreaDirections" rows="20"></textarea>
+                      </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="saveRecipe()">Save Recipe</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+            </div>
+        </div>
+    </div>
+</ng-template>

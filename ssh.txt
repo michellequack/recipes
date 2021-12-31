@@ -1,0 +1,1 @@
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICeA4Df3fklsx2SHlK+9YEkPIa9dB6vNUD/O12jQ+jQp michelle@softwareideas.com
