@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { FormsModule } from '@angular/forms';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
+import {ToastContainerComponent} from './toast-container/toast-container.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { RecipeViewComponent } from './recipe-view/recipe-view.component';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ToastContainerComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
