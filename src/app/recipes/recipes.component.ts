@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Recipe } from '../entities';
 import { RecipeService } from '../recipe.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from '../../environments/environment';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -23,14 +25,22 @@ export class RecipesComponent implements OnInit {
     soupRecipes: Recipe[] = [];
 
     currentRecipe: Recipe = new Recipe;
+
+    @ViewChild('mymodal') public templateRef?: TemplateRef<any>;
+
+    private subscriptions: any[] = [];
+
+    coffeeSource = `${environment.assetPrefix}/assets/coffee.jpg`
   
     constructor(private recipeService: RecipeService,
-        private modalService: NgbModal) {
+        private modalService: NgbModal,
+        private route: ActivatedRoute) {
       
     }
   
     ngOnInit() {
         this.getRecipeList();
+
     }
 
     compare( a: Recipe, b: Recipe ) {
@@ -44,7 +54,7 @@ export class RecipesComponent implements OnInit {
     }
   
     getRecipeList() {
-      this.recipeService.getRecipes().subscribe((data) => {
+      return this.recipeService.getRecipes().subscribe((data) => {
 
         let unsortedRecipes = data as Recipe[];
 
@@ -58,6 +68,21 @@ export class RecipesComponent implements OnInit {
         this.sideDishRecipes = this.recipes.filter(r => r.category === 'Side Dish');
         this.appetizerRecipes = this.recipes.filter(r => r.category === 'Appetizer');
         this.breakfastRecipes = this.recipes.filter(r => r.category === 'Breakfast');
+
+        this.subscriptions.push(this.route.params.subscribe(params => {
+          const id = params['id'];
+
+          if (id !== undefined) {
+            let recipe = this.recipes.filter(r => r._id == id)[0] as Recipe;
+          recipe.directions = recipe.directions.trim();
+          this.currentRecipe= recipe;
+
+          this.modalService.open(this.templateRef, {
+          centered: true,
+          backdrop: 'static'
+          });
+          }
+       }));
       })
     }
 

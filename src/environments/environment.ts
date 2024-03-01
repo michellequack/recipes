@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiAddress: "http://localhost:4000/api"
+  apiAddress: "http://localhost:4000/api",
+  assetPrefix: "",
+  baseAddress: "http://localhost:4200/recipes"
 };
 
 /*
@@ -15,3 +17,5 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+
+//apiAddress: "http://localhost:4000/api",

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Recipe } from './entities';
-import { catchError, map } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import { environment } from './../environments/environment';
 
 @Injectable({
@@ -21,7 +21,9 @@ export class RecipeService {
 
     // Get all recipes
     getRecipes() {
-        return this.http.get(`${environment.apiAddress}`);
+        return this.http.get(`${environment.apiAddress}`).pipe(
+          catchError(this.errorMgmt)
+          );
     }
     
     createRecipe(recipe: Recipe) {
@@ -59,7 +61,7 @@ export class RecipeService {
 
     // Error handling 
     errorMgmt(error: HttpErrorResponse) {
-        let errorMessage = '';
+        let errorMessage = ''; 
         if (error.error instanceof ErrorEvent) {
         // Get client-side error
         errorMessage = error.error.message;
